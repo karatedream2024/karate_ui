@@ -3,9 +3,12 @@ import logo from '../../assets/karatelogo.png'
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import Footer from '../Footer/Footer'
 import Marquee from 'react-fast-marquee'
+import { format } from 'date-fns';
 
 
-function Navbar() {
+function Navbar({getmydata}) {
+
+  console.log(getmydata, 'fsdaflkajsd')
 
   const locate = useLocation()
 
@@ -158,13 +161,13 @@ function Navbar() {
       <div className='sticky top-0  w-[100%]  bg-logo_blue text-white py-1 z-20'>
         <div>
         <div className='bg-logo_yellow'>
-         <Marquee autoFill={true} pauseOnHover={true} style={{padding: '2px'}} > <div className='px-10'>Tournment AnnounceMent title</div>    </Marquee>
+         <Marquee autoFill={true} pauseOnHover={true}  > <div className='px-10'>{getmydata && getmydata[0]?.tournamentName} - {getmydata && format(new Date(getmydata[0].startDate), 'dd/MM/yyyy')} - Enquiry : {getmydata && getmydata[0]?.enquiry} </div>    </Marquee>
         </div>
           
         </div>
-        <div className="flex justify-between pl-[10%] lg:pl-[0] lg:justify-around items-center  mx-3  ">
+        <div className="flex justify-between  lg:pl-[0] lg:justify-around items-center  px-3  ">
           <div className="flex  items-center justify-center">
-            <div className=' w-16 ml-3 md:w-24 '>
+            <div className=' w-16 md:w-24 '>
               <img src={logo} alt="" />
             </div>
 
@@ -212,8 +215,8 @@ function Navbar() {
               <div>
 
               </div>
-              <div className="border border-logo_red hover:bg-logo_red cursor-pointer text-white h-10 flex items-center rounded-md justify-center px-10">
-                Call Now
+              <div onClick={() => navigate('/register')} className="border border-logo_red hover:bg-logo_red cursor-pointer text-white h-10 flex items-center rounded-md justify-center px-10">
+                Register
               </div>
             </div>
           </div>
@@ -222,7 +225,7 @@ function Navbar() {
 
       <Outlet />
 
-      <div>
+      <div className='mt-10'>
         <Footer />
       </div>
     </div>

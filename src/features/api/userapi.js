@@ -37,6 +37,15 @@ const userApi = api.injectEndpoints({
       invalidatesTags: ['Registration'],
     }),
 
+    addContact: builder.mutation({
+      query: (contactData) => ({
+        url: '/contact/addcontact',
+        method: "POST",
+        body: contactData,
+      }),
+      invalidatesTags: ['Registration'],
+    }),
+
     getAllTournaments: builder.query({
       query: () => ({
         url: '/tour/tournament',
@@ -54,4 +63,5 @@ export const {
   useGetAllDojoQuery,
   useAddRegistrationMutation,
   useGetAllTournamentsQuery,
+  useAddContactMutation
 } = userApi;

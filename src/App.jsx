@@ -12,18 +12,23 @@ import { Triangle } from 'react-loader-spinner';
 import Register from './Components/Register/Register';
 import logo from '../src/assets/karatelogo.png';
 import { IoMdClose } from "react-icons/io";
+import { useGetAllTournamentsQuery } from './features/api/userapi';
+import { format } from 'date-fns';
 
 function App() {
+  const { data: getalltournaments, isLoading } = useGetAllTournamentsQuery();
+  const popupdata = getalltournaments && getalltournaments[0];
+
   const [adver, setAdver] = useState(false);
 
   useEffect(() => {
-    // Check if the advertisement has been shown in this session
+    if (isLoading || !popupdata) return; // Ensure data is loaded
     const adShown = sessionStorage.getItem('adShown');
     if (!adShown) {
       setAdver(true);
       sessionStorage.setItem('adShown', 'true');
     }
-  }, []);
+  }, [popupdata, isLoading]);
 
   const closeAd = () => {
     setAdver(false);
@@ -31,7 +36,7 @@ function App() {
 
   return (
     <>
-      {adver && (
+      {adver && popupdata && (
         <div className='h-screen w-screen flex justify-center items-center fixed z-50'>
           <div className='w-[350px] h-[350px] rounded-md relative bg-logo_blue'>
             <img className='w-[350px] h-[350px]' src={logo} alt="" />
@@ -40,23 +45,24 @@ function App() {
                 <IoMdClose onClick={closeAd} className='text-logo_yellow m-2' size={20} />
               </div>
               <div className='h3 text-center mt-5 text-white'>
-                Tournament Title
+                {popupdata.tournamentName}
               </div>
               <div className='pt-1 px-[10px] mt-5 text-white'>
-                <span> Announcement Date: </span>
-                <span className='text-logo_yellow'>30/10/2024</span>
+                <span> Announcement Date:
+                  <span>{format(new Date(popupdata.startDate), 'dd/MM/yyyy')} </span> 
+                </span>
               </div>
               <div className='px-4 mt-5 text-justify h5 text-white'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit repellat facere, eos doloribus officiis possimus obcaecati quam soluta deserunt harum?
+                {popupdata.About}
               </div>
               <div className='mt-3 px-4 flex justify-between text-white'>
                 <div>
                   <span> Eligible Students: </span>
-                  <span className='text-logo_yellow'>All</span>
+                  <span className='text-logo_yellow'> {popupdata.category}</span>
                 </div>
                 <div>
                   <span> Enquiry: </span>
-                  <span className='text-logo_yellow'>9089765698</span>
+                  <span className='text-logo_yellow'>{popupdata.enquiry}</span>
                 </div>
               </div>
               <div className='flex justify-center mt-7 px-5'>
@@ -86,8 +92,7 @@ function App() {
           </div>
         }>
           <Routes>
-            
-            <Route path="/" element={<Navbar />}>
+            <Route path="/" element={<Navbar getmydata={getalltournaments} />}>
               <Route index element={<Home />} />
               <Route path="event" element={<Event />} />
               <Route path="dojo" element={<Dojo />} />
