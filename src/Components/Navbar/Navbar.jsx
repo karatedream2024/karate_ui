@@ -187,7 +187,7 @@ function Navbar({getmydata}) {
         <div>
         {/* <div className='bg-logo_yellow'>
          <Marquee autoFill={true} pauseOnHover={true}  > <div className='px-10'>{getmydata && getmydata[0]?.tournamentName} - {getmydata && format(new Date(getmydata[0].startDate), 'dd/MM/yyyy')} - Enquiry : {getmydata && getmydata[0]?.enquiry} </div>    </Marquee>
-        </div> */}
+        </div> */}  
           
         </div>
         <div className="flex justify-between  lg:pl-[0] lg:justify-around items-center  px-3  ">
