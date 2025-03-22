@@ -181,7 +181,7 @@ function Navbar({getmydata}) {
 
 
 
-      {/* desktop navbar */}
+      {/* desktop navbar */} 
       <div className= {`${isVisible ? 'sticky   top-0  w-[100%]  bg-[#005691] text-white py-1 z-40'
          : 'sticky  top-0  w-[100%] opacity-60  bg-[#005691] text-white py-1 z-40'}`}>
         <div>
