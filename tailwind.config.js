@@ -5,6 +5,12 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
+    extend: {
+      fontFamily: {
+        sans: ['Poppins', 'sans-serif'], // Change default sans font
+        heading: ['Merriweather', 'serif'], // Add a custom font
+      },
+    },
     colors:{
 
       

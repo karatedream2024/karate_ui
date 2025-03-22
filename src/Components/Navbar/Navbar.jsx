@@ -36,6 +36,30 @@ function Navbar({getmydata}) {
     setToggle(!toggle)
   }
 
+
+  const [isVisible, setIsVisible] = useState(true);
+  let lastScrollTop = 0;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+      if (scrollTop > lastScrollTop) {
+        setIsVisible(false); // Hide when scrolling down
+      } else {
+        setIsVisible(true); // Show when scrolling up
+      }
+
+      lastScrollTop = scrollTop;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return ( 
 
     <div>
@@ -158,16 +182,17 @@ function Navbar({getmydata}) {
 
 
       {/* desktop navbar */}
-      <div className='sticky top-0  w-[100%]  bg-logo_blue text-white py-1 z-20'>
+      <div className= {`${isVisible ? 'sticky   top-0  w-[100%]  bg-[#005691] text-white py-1 z-40'
+         : 'sticky  top-0  w-[100%] opacity-60  bg-[#005691] text-white py-1 z-40'}`}>
         <div>
-        <div className='bg-logo_yellow'>
+        {/* <div className='bg-logo_yellow'>
          <Marquee autoFill={true} pauseOnHover={true}  > <div className='px-10'>{getmydata && getmydata[0]?.tournamentName} - {getmydata && format(new Date(getmydata[0].startDate), 'dd/MM/yyyy')} - Enquiry : {getmydata && getmydata[0]?.enquiry} </div>    </Marquee>
-        </div>
+        </div> */}
           
         </div>
         <div className="flex justify-between  lg:pl-[0] lg:justify-around items-center  px-3  ">
           <div className="flex  items-center justify-center">
-            <div className=' w-16 md:w-24 '>
+            <div className=' w-16 md:w-16 '>
               <img src={logo} alt="" />
             </div>
 
@@ -178,25 +203,25 @@ function Navbar({getmydata}) {
           <div className='hidden lg:block'>
             <div className="flex space-x-10 ">
               <Link to='/'>
-                <div onClick={() => navbarchange('/')} className={`${nav === '/' ? 'h3 !text-logo_yellow ' : 'h3 '}`}>
+                <div onClick={() => navbarchange('/')} className={`${nav === '/' ? 'h4 !text-logo_yellow ' : 'h4 '}`}>
                   Home
                 </div>
               </Link>
 
               <Link to='/Event'>
-                <div onClick={() => navbarchange('/Event')} className={`${nav === '/Event' ? 'h3 !text-logo_yellow ' : 'h3'}`}>
+                <div onClick={() => navbarchange('/Event')} className={`${nav === '/Event' ? 'h4 !text-logo_yellow ' : 'h4'}`}>
                   Event
                 </div>
               </Link>
               <Link to='/Dojo'>
-                <div onClick={() => navbarchange('/Dojo')} className={`${nav === '/Dojo' ? 'h3 !text-logo_yellow ' : 'h3'}`}>
+                <div onClick={() => navbarchange('/Dojo')} className={`${nav === '/Dojo' ? 'h4 !text-logo_yellow ' : 'h4'}`}>
                   Dojo's
                 </div>
               </Link>
      
               <Link to='/blog'>
 
-                <div onClick={() => navbarchange('/blog')} className={`${nav === '/blog' ? 'h3 !text-logo_yellow ' : 'h3 '}`}>
+                <div onClick={() => navbarchange('/blog')} className={`${nav === '/blog' ? 'h4 !text-logo_yellow ' : 'h4 '}`}>
                  Blog
                 </div>
               </Link>
@@ -204,7 +229,7 @@ function Navbar({getmydata}) {
 
               <Link to='/Contact'>
 
-                <div onClick={() => navbarchange('/Contact')} className={`${nav === '/Contact' ? 'h3 !text-logo_yellow ' : 'h3 '}`}>
+                <div onClick={() => navbarchange('/Contact')} className={`${nav === '/Contact' ? 'h4 !text-logo_yellow ' : 'h4 '}`}>
                   Contact us
                 </div>
               </Link>
@@ -215,7 +240,7 @@ function Navbar({getmydata}) {
               <div>
 
               </div>
-              <div onClick={() => navigate('/register')} className="border border-logo_red hover:bg-logo_red cursor-pointer text-white h-10 flex items-center rounded-md justify-center px-10">
+              <div onClick={() => navigate('/register')} className="border border-[#0a8cbf] hover:bg-[#0a8cbf] cursor-pointer text-white h-10 flex items-center rounded-md justify-center px-10">
                 Register
               </div>
             </div>

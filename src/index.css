@@ -2,20 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-  font-family: "Times New Roman", Times, serif;
-}
 
  
 @layer base {
     .h1 {
-      @apply text-4xl lg:text-6xl font-bold;
+      @apply text-4xl lg:text-5xl font-bold;
     }
     .h2{
         @apply text-2xl lg:text-4xl font-bold;
     }
     .h3{
-        @apply text-lg  lg:text-xl font-semibold;
+        @apply text-lg  lg:text-2xl font-semibold;
     }
     .h4{
         @apply text-sm text-justify lg:text-xl font-medium;
