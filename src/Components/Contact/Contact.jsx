@@ -1,10 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAddContactMutation } from '../../features/api/userapi';
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 function Contact() {
+
+
+   useEffect(() => {
+      AOS.init({
+        duration: 1000, // Animation duration in milliseconds
+        // once: true,     // Whether animation should happen only once
+      });
+    }, []);
+    
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -34,8 +44,11 @@ function Contact() {
 
   return (
     <div className="container mx-auto p-6">
+             <div data-aos="fade-in" className='h2 text-center pt-5 text-logo_blue'>Events</div>
+            <div data-aos="fade-in" className='h3  text-center mt-4 mb-10 text-letter-dark'> Elevate your well-being with classes that focus on both physical and mental health.</div>
+      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-[100%] lg:w-[1024px] mx-auto">
-        <div className="flex justify-center relative">
+        <div data-aos="fade-right" className="flex justify-center relative">
           <img
             src="https://images.pexels.com/photos/7045675/pexels-photo-7045675.jpeg?auto=compress&cs=tinysrgb&w=600"
             alt="Contact"
@@ -69,7 +82,7 @@ function Contact() {
           </div>
 
         </div>
-        <div className="p-6 rounded-md shadow-custom-skyblue">
+        <div data-aos="fade-left" className="p-6 rounded-md shadow-custom-skyblue">
           <div className="font-medium text-black text-lg mb-4 h2">Contact Form</div>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="flex flex-col md:flex-row gap-6">

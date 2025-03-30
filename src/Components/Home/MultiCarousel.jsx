@@ -20,88 +20,65 @@ function MultiCarousel() {
       partialVisibilityGutter: 0 // this is needed to tell the amount of px that should be visible.
     }
   }
+
+  
+const images = [
+  {
+    src: "https://images.pexels.com/photos/8611352/pexels-photo-8611352.jpeg?auto=compress&cs=tinysrgb&w=600",
+    title: "Ranjith - Black Belt",
+  },
+  {
+    src: "https://images.pexels.com/photos/8611373/pexels-photo-8611373.jpeg?auto=compress&cs=tinysrgb&w=600",
+    title: "Ranjith - Black Belt",
+  },
+  {
+    src: "https://images.pexels.com/photos/7988765/pexels-photo-7988765.jpeg?auto=compress&cs=tinysrgb&w=600",
+    title: "Ranjith - Black Belt",
+  },
+  {
+    src: "https://images.pexels.com/photos/7045561/pexels-photo-7045561.jpeg?auto=compress&cs=tinysrgb&w=600",
+    title: "Ranjith - Black Belt",
+  },
+];
   return (
     <div className=''>
 
-      <div className='bg-logo_yellow w-[100%] md:w-[90%] lg:w-[1024PX] px-5  mt-10 h-[400px] md:min-h-[450px] lg:min-h-[600px] mx-auto relative rounded-lg '>
-        <div className='text-center py-4'>
-          <div className='h2 '>
-            From Learning to Mastery
-          </div>
-          <div className='h4 text-center mt-3' >
-            "Our trainers are dedicated to taking students on a journey from learning the basics to mastering their chosen fields."
-
-          </div>
-        </div>
-        <div className=''>
-          <Carousel partialVisible={true} responsive={responsive} focusOnSelect={true} autoPlay={true} rewind={true} rewindWithAnimation={true}>
-
-            <div className='text-center sm:w-[400px] md:w-[100%] mx-auto rounded-xl md:px-5 lg:px-5'>
-              <img className='h-48 md:h-60 w-[400px] md:w-[100%] lg:w-[100%] lg:h-80  rounded-t-xl' src="https://images.pexels.com/photos/8611352/pexels-photo-8611352.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
-              <div className='text-center rounded-b-xl w-[400px] md:w-[100%] lg:w-[100%]   h3 pb-3 h-10 bg-black  text-white'>Ranjith - black belt</div>
-            </div>  
-
-            <div className='text-center sm:w-[400px] md:w-[100%] mx-auto rounded-xl md:px-5 lg:px-5'>
-              <img className='h-48 md:h-60 w-[400px] md:w-[100%] lg:w-[100%] lg:h-80  rounded-t-xl' src="https://images.pexels.com/photos/8611373/pexels-photo-8611373.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
-              <div className='text-center rounded-b-xl w-[400px] md:w-[100%] lg:w-[100%]   h3 pb-3 h-10 bg-black  text-white'>Ranjith - black belt</div>
-            </div>  
-
-            <div className='text-center sm:w-[400px] md:w-[100%] mx-auto rounded-xl md:px-5 lg:px-5'>
-              <img className='h-48 md:h-60 w-[400px] md:w-[100%] lg:w-[100%] lg:h-80  rounded-t-xl' src="https://images.pexels.com/photos/7988765/pexels-photo-7988765.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
-              <div className='text-center rounded-b-xl w-[400px] md:w-[100%] lg:w-[100%]   h3 pb-3 h-10 bg-black  text-white'>Ranjith - black belt</div>
-            </div>  
-
-            <div className='text-center sm:w-[400px] md:w-[100%] mx-auto rounded-xl md:px-5 lg:px-5'>
-              <img className='h-48 md:h-60 w-[400px] md:w-[100%] lg:w-[100%] lg:h-80  rounded-t-xl' src="https://images.pexels.com/photos/7045561/pexels-photo-7045561.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
-              <div className='text-center rounded-b-xl w-[400px] md:w-[100%] lg:w-[100%]   h3 pb-3 h-10 bg-black  text-white'>Ranjith - black belt</div>
-            </div>  
-            
-            <div className='text-center sm:w-[400px] md:w-[100%] mx-auto rounded-xl md:px-5 lg:px-5'>
-              <img className='h-48 md:h-60 w-[400px] md:w-[100%] lg:w-[100%] lg:h-80  rounded-t-xl' src="https://images.pexels.com/photos/8611373/pexels-photo-8611373.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
-              <div className='text-center rounded-b-xl w-[400px] md:w-[100%] lg:w-[100%]   h3 pb-3 h-10 bg-black  text-white'>Ranjith - black belt</div>
-            </div>  
-
-            <div className='text-center sm:w-[400px] md:w-[100%] mx-auto rounded-xl md:px-5 lg:px-5'>
-              <img className='h-48 md:h-60 w-[400px] md:w-[100%] lg:w-[100%] lg:h-80  rounded-t-xl' src="https://images.pexels.com/photos/7988765/pexels-photo-7988765.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
-              <div className='text-center rounded-b-xl w-[400px] md:w-[100%] lg:w-[100%]   h3 pb-3 h-10 bg-black  text-white'>Ranjith - black belt</div>
-            </div>  
-
-            <div className='text-center sm:w-[400px] md:w-[100%] mx-auto rounded-xl md:px-5 lg:px-5'>
-              <img className='h-48 md:h-60 w-[400px] md:w-[100%] lg:w-[100%] lg:h-80  rounded-t-xl' src="https://images.pexels.com/photos/7045561/pexels-photo-7045561.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
-              <div className='text-center rounded-b-xl w-[400px] md:w-[100%] lg:w-[100%]   h3 pb-3 h-10 bg-black  text-white'>Ranjith - black belt</div>
-            </div>    
-
-{/*             
-            <div className='text-center rounded-xl md:px-0 lg:px-5'>
-              <img className='h-48 md:h-60 w-[100%] md:w-[100%] lg:h-80 lg:w-[100%] rounded-t-xl' src="https://images.pexels.com/photos/264905/pexels-photo-264905.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
-              <div className='text-center rounded-b-xl   h3 pb-3 h-10 bg-black  text-white'>Ranjith - black belt</div>
-            </div> 
-            
-            
-            <div className='text-center rounded-xl md:px-0 lg:px-5'>
-              <img className='h-48 md:h-60 w-[100%] md:w-[100%] lg:h-80 lg:w-[100%] rounded-t-xl' src="https://images.pexels.com/photos/9962890/pexels-photo-9962890.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
-              <div className='text-center rounded-b-xl   h3 pb-3 h-10 bg-black  text-white'>Ranjith - black belt</div>
-            </div>  
-            
-            <div className='text-center rounded-xl md:px-0 lg:px-5'>
-              <img className='h-48 md:h-60 w-[100%] md:w-[100%] lg:h-80 lg:w-[100%] rounded-t-xl' src="https://images.pexels.com/photos/5691359/pexels-photo-5691359.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
-              <div className='text-center rounded-b-xl   h3 pb-3 h-10 bg-black  text-white'>Ranjith - black belt</div>
-            </div> 
-            
-            <div className='text-center rounded-xl md:px-0 lg:px-5'>
-              <img className='h-48 md:h-60 w-[100%] md:w-[100%] lg:h-80 lg:w-[100%] rounded-t-xl' src="https://images.pexels.com/photos/264905/pexels-photo-264905.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
-              <div className='text-center rounded-b-xl   h3 pb-3 h-10 bg-black  text-white'>Ranjith - black belt</div>
-            </div>  */}
-            {/* <div><img className='h-96 w-96 rounded-lg' src="https://images.pexels.com/photos/6898860/pexels-photo-6898860.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" /></div>
-    <div><img className='h-96 w-96 rounded-lg' src="https://images.pexels.com/photos/264905/pexels-photo-264905.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" /></div>
-    <div><img className='h-96 w-96 rounded-lg' src="https://images.pexels.com/photos/9962890/pexels-photo-9962890.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" /></div>
-    <div><img className='h-96 w-96 rounded-lg' src="https://images.pexels.com/photos/5691359/pexels-photo-5691359.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" /></div>
-    <div><img className='h-96 w-96 rounded-lg' src="https://images.pexels.com/photos/264905/pexels-photo-264905.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" /></div> */}
-
-          </Carousel>
-        </div>
-
+<div className="bg-yellow-400   md:px-6 py-10 mt-5 z-10  shadow-[#38bdf8] bg-[#f0f9ff] h-[500px]  pt-16   mx-auto rounded-lg shadow-lg">
+<div className=' text-center h3 text-logo_green' >
+        "Our since thank to all of Master Everyone welcome to industry" 
       </div>
+      
+      <div className="px-2 md:px-4 mt-10">
+        <Carousel
+             partialVisible
+             focusOnSelect
+             autoPlay
+             rewind
+             rewindWithAnimation
+          responsive={responsive}
+      
+          infinite
+          showDots
+          className="py-5"
+        >
+          {images.map((item, index) => (
+            <div
+              key={index}
+              className="rounded-lg overflow-hidden shadow-md mx-2"
+            >
+              <img
+                className="h-48 w-full object-cover md:h-40 lg:h-56"
+                src={item.src}
+                alt={`Carousel item ${index + 1}`}
+              />
+              <div className="text-center text-white bg-black py-2 text-lg font-medium">
+                {item.title}
+              </div>
+            </div>
+          ))}
+        </Carousel>
+      </div>
+    </div>
 
 
 

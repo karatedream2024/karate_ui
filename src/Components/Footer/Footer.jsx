@@ -2,38 +2,41 @@ import React from 'react'
 import logo from '../../assets/karatelogo.png'
 function Footer() {
   return (
-    <div className='bg-letter-dark'>
-    <div className='bg-letter-dark w-[100%] lg:w-[1024px] mx-auto'>
+    <div className='bg-[#005691]'>
+    <div className='bg-[#005691] w-[100%] lg:w-[1024px] mx-auto'>
       <div className='grid sm:grid-cols-2'>
-        <div className='flex flex-col items-center justify-center'>
+        <div className='flex flex-col items-center justify-center'> 
 
-      <div className="flex justify-between  pl-[5%]  py-5">
-        <div className="h3 text-white">
+      <div className="flex justify-between  pl-[5%]  pb-5">
+        <div className="h3 text-white text-center mt-5 lg:mt-0">
           TamilNadu Kyokusion Chinnus Karate Associations
         </div>
 
       </div>
       <div className=' flex space-x-5 pl-[10%] sm:space-x-10 h5 text-white'>
-        <div>
-        <div >
+        
+        <div className='cursor-pointer hover:scale-110 duration-300 hover:text-logo_yellow' >
           Home
         </div>
-        <div>
+        <div className='cursor-pointer hover:scale-110 duration-300 hover:text-logo_yellow' >
           Event
         </div>
-        <div>
+        <div className='cursor-pointer hover:scale-110 duration-300 hover:text-logo_yellow' >
           Dojo
         </div>
-        </div>
-        <div>
-        <div>
+       
+        
+        <div className='cursor-pointer hover:scale-110 duration-300 hover:text-logo_yellow' >
           Blog
         </div>
-        <div>
+        <div className='cursor-pointer hover:scale-110 duration-300 hover:text-logo_yellow' >
           Contact
         </div>
-        </div>
-        <div className="flex space-x-5">
+       
+      
+        
+      </div>
+      <div className="flex space-x-5 mt-5 text-white">
           <span>
             <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path fill="currentColor" d="M22.46 6c-.77.35-1.6.58-2.46.69c.88-.53 1.56-1.37 1.88-2.38c-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29c0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15c0 1.49.75 2.81 1.91 3.56c-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07a4.28 4.28 0 0 0 4 2.98a8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56c.84-.6 1.56-1.36 2.14-2.23" /></svg>
           </span>
@@ -47,11 +50,9 @@ function Footer() {
             <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 16 16"><path fill="currentColor" d="M3.44 4.89c.8 0 1.44-.65 1.44-1.44s-.65-1.44-1.44-1.44S2 2.66 2 3.45s.65 1.44 1.44 1.44m2.81 1.09V14h2.48v-3.96c0-1.05.2-2.06 1.49-2.06s1.29 1.2 1.29 2.12V14H14V9.6c0-2.16-.46-3.82-2.98-3.82c-1.21 0-2.02.66-2.35 1.29h-.03v-1.1H6.26Zm-4.05 0h2.49V14H2.2z" /></svg>
           </span>
         </div>
-        
-      </div>
       </div>
       <div className='w-[100%] h-[100%] flex justify-center sm:items-center'>
-        <img className='h-28 sm:h-60' src={logo} alt="" />
+        <img className='h-28 sm:h-56' src={logo} alt="" />
       </div>
       </div>
     </div>

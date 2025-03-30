@@ -5,24 +5,25 @@ const userApi = api.injectEndpoints({
   endpoints: (builder) => ({
 
     getAllBlog: builder.query({
-      query: () => ({
-        url: '/blog/getblog',
+      query: ({ page, limit}) => ({
+        url: `/blog/getblog/${limit}/${page}`,
         method: "GET",
       }),
       providesTags: ['blog'],
     }),
 
     getAllEvent: builder.query({
-      query: () => ({
-        url: '/event/getevent',
+      query: ({ page, limit, eventtype }) => ({
+        url: `/event/getevent/${limit}/${page}/${eventtype}`,
         method: "GET",
+        // params: { page, limit, eventtype },
       }),
       providesTags: ['Event'],
     }),
 
     getAllDojo: builder.query({
-      query: () => ({
-        url: '/dojo/getdojo',
+      query: ({ page, limit}) => ({
+        url: `/dojo/getdojo/${limit}/${page}`,
         method: "GET",
       }),
       providesTags: ['Dojo'],

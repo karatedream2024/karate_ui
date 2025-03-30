@@ -4,9 +4,14 @@ import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import Footer from '../Footer/Footer'
 import Marquee from 'react-fast-marquee'
 import { format } from 'date-fns';
+import CircularText from './CircularText'
+import { SiRiotgames } from "react-icons/si";
+import { useGetAllTournamentsQuery } from '../../features/api/userapi'
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
+import { IoMdClose } from "react-icons/io";
 
-function Navbar({getmydata}) {
+function Navbar({ getmydata }) {
 
   console.log(getmydata, 'fsdaflkajsd')
 
@@ -17,12 +22,17 @@ function Navbar({getmydata}) {
   const navigate = useNavigate();
 
 
-  function RegisterNaviation(){
+  function RegisterNaviation() {
     navigate('/register')
   }
 
 
+  console.log(locate, "wake upe")
+
   const [nav, setnav] = useState(locate.pathname)
+  useEffect(() => {
+    setnav(locate.pathname)
+  }, [locate.pathname])
 
   const [toggle, setToggle] = useState(false)
 
@@ -38,16 +48,18 @@ function Navbar({getmydata}) {
 
 
   const [isVisible, setIsVisible] = useState(true);
-  let lastScrollTop = 0;
+  let lastScrollTop = 200;
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      console.log(scrollTop, lastScrollTop, "lakeship")
 
-      if (scrollTop > lastScrollTop) {
-        setIsVisible(false); // Hide when scrolling down
+
+      if (lastScrollTop <= 100) {
+        setIsVisible(true); // Hide when scrolling down
       } else {
-        setIsVisible(true); // Show when scrolling up
+        setIsVisible(false); // Show when scrolling up
       }
 
       lastScrollTop = scrollTop;
@@ -60,9 +72,69 @@ function Navbar({getmydata}) {
     };
   }, []);
 
-  return ( 
 
-    <div>
+  const [adver, setAdver] = useState(false);
+
+  const { data: getalltournaments, isLoading } = useGetAllTournamentsQuery();
+  const popupdata = getalltournaments && getalltournaments[0];
+
+
+  const closeAd = () => {
+    setAdver(false);
+  };
+
+  return (
+
+    <div className='' >
+      {/* <DotLottieReact
+      src="path/to/animation.lottie"
+      loop
+      autoplay
+    /> */}
+
+      {
+        adver &&
+        <div onClick={closeAd} className='h-screen w-screen fixed top-0 flex justify-center items-center z-50 bg-black/40 ' >
+          <div onClick={(e) => e.stopPropagation()} className='  w-[350px] h-[350px] rounded-lg bg-white relative'>
+            <div className='absolute right-0 top-0 rounded-full'>
+              <IoMdClose onClick={closeAd} className='text-logo_yellow m-2 absolute right-0 cursor-pointer' size={20} />
+            </div>
+            <div className='h3 text-center mt-5 text-logo_blue'>
+              {popupdata?.tournamentName}
+            </div>
+            <div className='px-4 mt-5 h5 text-log_letter_gray text-center'>
+              {popupdata?.About}
+            </div>
+            <div className='pt-1 px-[10px] mt-5 text-logo_yellow'>
+              <span  > <span className='text-black pl-1.5'  >  Date : </span>
+                <span> {popupdata?.startDate && format(new Date(popupdata?.startDate), 'dd/MM/yyyy')} </span>
+              </span>
+            </div>
+
+            <div className='mt-3 px-4 flex flex-col  justify-between text-white'>
+              <div>
+                <span className='text-logo_blue' > Eligible : </span>
+                <span className='text-logo_yellow'> {popupdata?.category}</span>
+              </div>
+
+              <div className='mt-2' >
+                <span className='text-logo_blue' > Enquiry: </span>
+                <span className='text-logo_yellow'>{popupdata?.enquiry}</span>
+              </div>
+            </div>
+            <div className='flex justify-center mt-7 px-5'>
+              {/* <a href="/register"> */}
+              <div onClick={() => navigate('/register')} className='h-10 cursor-pointer bg-logo_yellow flex justify-center items-center w-[130px] border border-logo_yellow rounded-lg font-semibold text-white'>
+                Register
+              </div>
+              {/* </a> */}
+            </div>
+          </div>
+        </div>
+
+
+      }
+
       {/* <div className='bg-logo_red'>
         <div className='grid grid-cols-2 md:flex md:flex-wrap justify-around items-center  '>
           <div className='text-white flex items-center h3'>
@@ -78,77 +150,93 @@ function Navbar({getmydata}) {
       </div> */}
 
       {/* mobile navbar */}
-      <div className='lg:hidden '>
-        <div className={`${toggle ? 'w-[80%] sm:w-[50%] duration-700' : 'w-0'} bg-white h-[100vh] fixed top-0 right-0 z-40 `}>
+      <div className='lg:hidden z-50  '>
+
+        <div className={`${toggle ? 'w-[80%] sm:w-[50%] duration-700' : 'w-0'} bg-white h-[100vh] fixed top-0 right-0 duration-300 z-50 `}>
           <div className='flex justify-between px-5 items-center'>
-            <div className='absolute h-16 w-16 z-50 top-0 left-0 '>
+            <div className='absolute h-16 w-16 z-50 top-3 left-3 '>
               <img src={logo} alt="" />
             </div>
-            <div className={`absolute right-0 top-5 ${toggle ? "" : "hidden"}`} onClick={() => navToggle()}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><g fill="none" fillRule="evenodd"><path d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z" /><path fill="currentColor" d="m12 14.122l5.303 5.303a1.5 1.5 0 0 0 2.122-2.122L14.12 12l5.304-5.303a1.5 1.5 0 1 0-2.122-2.121L12 9.879L6.697 4.576a1.5 1.5 0 1 0-2.122 2.12L9.88 12l-5.304 5.304a1.5 1.5 0 1 0 2.122 2.12z" /></g></svg>
+            <div className={`absolute cursor-pointer right-2 top-5 ${toggle ? "" : "hidden"}`} onClick={() => navToggle()}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><g fill="none" fillRule="evenodd"><path d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z" /><path fill="currentColor" d="m12 14.122l5.303 5.303a1.5 1.5 0 0 0 2.122-2.122L14.12 12l5.304-5.303a1.5 1.5 0 1 0-2.122-2.121L12 9.879L6.697 4.576a1.5 1.5 0 1 0-2.122 2.12L9.88 12l-5.304 5.304a1.5 1.5 0 1 0 2.122 2.12z" /></g></svg>
             </div>
+
 
 
           </div>
-          <div>
-            <div className={`${toggle ? '' : 'hidden'} relative w-[80%] mx-auto mt-5 mb-5 pt-16 `} >
-              <input type="text" className="outline-none border-none bg-background  h-12  w-[100%]   px-3 rounded-lg " />
-              <div className="absolute top-0 right-3 hover:text-blue-400   flex items-center justify-center h-full">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20"><path fill="currentColor" d="M8.195 0c4.527 0 8.196 3.62 8.196 8.084a7.989 7.989 0 0 1-1.977 5.267l5.388 5.473a.686.686 0 0 1-.015.98a.71.71 0 0 1-.993-.014l-5.383-5.47a8.23 8.23 0 0 1-5.216 1.849C3.67 16.169 0 12.549 0 8.084C0 3.62 3.67 0 8.195 0m0 1.386c-3.75 0-6.79 2.999-6.79 6.698c0 3.7 3.04 6.699 6.79 6.699s6.791-3 6.791-6.699c0-3.7-3.04-6.698-6.79-6.698" /></svg>
-              </div>
+          <div className='mt-24' >
 
-            </div>
           </div>
           <Link to='/'>
-            <div onClick={() => navbarchange('/')} className={`${nav === '/' ? 'border-l-4 rounded-full text-blue' : ''} `}>
+            <div  onClick={() => navbarchange('/')} className={`${nav === '/' ? 'border-l-4 rounded-full text-blue' : ''} `}>
               <hr className='text-line' />
 
-              <div className={` ${nav === '/' ? 'text-blue' : ''} my-3 pl-10 h5s`} >
+              <div onClick={() => navToggle()} className={` ${nav === '/' ? 'text-blue' : ''} my-3 pl-10 h5s`} >
                 Home
               </div>
               <hr className='text-line' />
             </div>
           </Link>
-          <Link to='/event'>
-            <div onClick={() => navbarchange('/event')} className={`${nav === '/event' ? 'border-l-4 rounded-full text-blue' : ''} `}>
+          <Link to='/founder'>
+            <div onClick={() => navbarchange('/founder')} className={`${nav === '/founder' ? 'border-l-4 rounded-full text-blue' : ''} `}>
               <hr className='text-line' />
 
-              <div className={` ${nav === '/event' ? 'text-blue' : ''} my-3 pl-10 h5`} >
+              <div onClick={() => navToggle()} className={` ${nav === '/founder' ? 'text-blue' : ''} my-3 pl-10 h5s`} >
+                Master
+              </div>
+              <hr className='text-line' />
+            </div>
+          </Link>
+          <Link to='/events'>
+            <div onClick={() => navbarchange('/events')} className={`${nav === '/events' ? 'border-l-4 rounded-full text-blue' : ''} `}>
+              <hr className='text-line' />
+
+              <div onClick={() => navToggle()} className={` ${nav === '/events' ? 'text-blue' : ''} my-3 pl-10 h5`} >
                 Event
               </div>
               <hr className='text-line' />
             </div>
           </Link>
-          <Link to='/dojo'>
-            <div onClick={() => navbarchange('/dojo')} className={`${nav === '/dojo' ? 'border-l-4 rounded-full text-blue' : ''} `}>
+          <Link to='/dojos'>
+            <div onClick={() => navbarchange('/dojos')} className={`${nav === '/dojos' ? 'border-l-4 rounded-full text-blue' : ''} `}>
               <hr className='text-line' />
 
-              <div className={` ${nav === '/Dojo' ? 'text-blue' : ''} my-3 pl-10 h5`} >
+              <div onClick={() => navToggle()} className={` ${nav === '/dojos' ? 'text-blue' : ''} my-3 pl-10 h5`} >
                 Dojo
               </div>
               <hr className='text-line' />
             </div>
           </Link>
-          <Link to='/blog'>
-            <div onClick={() => navbarchange('/blog')} className={`${nav === '/blog' ? 'border-l-4 rounded-full text-blue' : ''} `}>
+          <Link to='/blogs'>
+            <div onClick={() => navbarchange('/blogs')} className={`${nav === '/blogs' ? 'border-l-4 rounded-full text-blue' : ''} `}>
               <hr className='text-line' />
 
-              <div className={` ${nav === '/blog' ? 'text-blue' : ''} my-3 pl-10 h5`} >
+              <div onClick={() => navToggle()} className={` ${nav === '/blogs' ? 'text-blue' : ''} my-3 pl-10 h5`} >
                 Blog
               </div>
               <hr className='text-line' />
             </div>
           </Link>
-          <Link to='/contact'>
-            <div onClick={() => navbarchange('/contact')} className={`${nav === '/contact' ? 'border-l-4 rounded-full text-blue' : ''} `}>
+          <Link to='/contacts'>
+            <div onClick={() => navbarchange('/contacts')} className={`${nav === '/contacts' ? 'border-l-4 rounded-full text-blue' : ''} `}>
               <hr className='text-line' />
 
-              <div className={` ${nav === '/contact' ? 'text-blue' : ''} my-3 pl-10 h5`} >
+              <div onClick={() => navToggle()} className={` ${nav === '/contacts' ? 'text-blue' : ''} my-3 pl-10 h5`} >
                 Contact
               </div>
               <hr className='text-line' />
             </div>
           </Link>
+
+          <div className='mt-5 w-full '>
+            <div className='flex   pl-[35%] ' >
+              <div onClick={() =>navigate("/register")} className='bg-logo_blue  text-white  py-2 rounded-md cursor-pointer inline-flex px-5' >
+                Register
+              </div>
+            </div>
+          </div>
+
+
           <div className={`${toggle ? '' : 'hidden'} flex  justify-around my-5`}>
             <div className='border-x-2 border-y-2 p-2  text-letter-black cursor-pointer border-line'>
               <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path fill="currentColor" d="M22.46 6c-.77.35-1.6.58-2.46.69c.88-.53 1.56-1.37 1.88-2.38c-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29c0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15c0 1.49.75 2.81 1.91 3.56c-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07a4.28 4.28 0 0 0 4 2.98a8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56c.84-.6 1.56-1.36 2.14-2.23" /></svg>
@@ -177,18 +265,19 @@ function Navbar({getmydata}) {
 
 
         </div>
+
       </div>
 
 
 
-      {/* desktop navbar */} 
-      <div className= {`${isVisible ? 'sticky   top-0  w-[100%]  bg-[#005691] text-white py-1 z-40'
-         : 'sticky  top-0  w-[100%] opacity-60  bg-[#005691] text-white py-1 z-40'}`}>
+      {/* desktop navbar */}
+      <div className={`${isVisible ? 'sticky   top-0  duration-1000 w-[100%]  bg-[#005691] text-white py-1 z-40'
+        : 'sticky  top-0  w-[100%]   bg-[#005691]/30 duration-1000 text-white py-1 z-40'}`}>
         <div>
-        {/* <div className='bg-logo_yellow'>
+          {/* <div className='bg-logo_yellow'>
          <Marquee autoFill={true} pauseOnHover={true}  > <div className='px-10'>{getmydata && getmydata[0]?.tournamentName} - {getmydata && format(new Date(getmydata[0].startDate), 'dd/MM/yyyy')} - Enquiry : {getmydata && getmydata[0]?.enquiry} </div>    </Marquee>
-        </div> */}  
-          
+        </div> */}
+
         </div>
         <div className="flex justify-between  lg:pl-[0] lg:justify-around items-center  px-3  ">
           <div className="flex  items-center justify-center">
@@ -197,39 +286,44 @@ function Navbar({getmydata}) {
             </div>
 
           </div>
-          <div onClick={() => navToggle()} className='lg:hidden'>
+          <div onClick={() => navToggle()} className='lg:hidden cursor-pointer'>
             <svg xmlns="http://www.w3.org/2000/svg" width="1.17em" height="1em" viewBox="0 0 28 24"><path fill="currentColor" d="M2.61 0h22.431a2.61 2.61 0 1 1 0 5.22H2.61a2.61 2.61 0 1 1 0-5.22m0 9.39h22.431a2.61 2.61 0 1 1 0 5.22H2.61a2.61 2.61 0 1 1 0-5.22m0 9.391h22.431a2.61 2.61 0 1 1 0 5.22H2.61a2.61 2.61 0 1 1 0-5.22" /></svg>
           </div>
           <div className='hidden lg:block'>
             <div className="flex space-x-10 ">
-              <Link to='/'>
-                <div onClick={() => navbarchange('/')} className={`${nav === '/' ? 'h4 !text-logo_yellow ' : 'h4 '}`}>
+              <Link  to='/'>
+                <div  onClick={() =>  navbarchange('/')} className={`${nav === '/' ? 'h4 !text-logo_yellow ' : 'h4 '}`}>
                   Home
                 </div>
               </Link>
+              <Link to='/founder'>
+                <div onClick={() => navbarchange('/founder')} className={`${nav === '/founder' ? 'h4 !text-logo_yellow ' : 'h4 '}`}>
+                  Master
+                </div>
+              </Link>
 
-              <Link to='/Event'>
-                <div onClick={() => navbarchange('/Event')} className={`${nav === '/Event' ? 'h4 !text-logo_yellow ' : 'h4'}`}>
+              <Link to='/events'>
+                <div onClick={() => navbarchange('/events')} className={`${nav === '/events' ? 'h4 !text-logo_yellow ' : 'h4'}`}>
                   Event
                 </div>
               </Link>
-              <Link to='/Dojo'>
-                <div onClick={() => navbarchange('/Dojo')} className={`${nav === '/Dojo' ? 'h4 !text-logo_yellow ' : 'h4'}`}>
+              <Link to='/dojos'>
+                <div onClick={() => navbarchange('/dojos')} className={`${nav === '/dojos' ? 'h4 !text-logo_yellow ' : 'h4'}`}>
                   Dojo's
                 </div>
               </Link>
-     
-              <Link to='/blog'>
 
-                <div onClick={() => navbarchange('/blog')} className={`${nav === '/blog' ? 'h4 !text-logo_yellow ' : 'h4 '}`}>
-                 Blog
+              <Link to='/blogs'>
+
+                <div onClick={() => navbarchange('/blogs')} className={`${nav === '/blogs' ? 'h4 !text-logo_yellow ' : 'h4 '}`}>
+                  Blog
                 </div>
               </Link>
 
 
-              <Link to='/Contact'>
+              <Link to='/contacts'>
 
-                <div onClick={() => navbarchange('/Contact')} className={`${nav === '/Contact' ? 'h4 !text-logo_yellow ' : 'h4 '}`}>
+                <div onClick={() => navbarchange('/contacts')} className={`${nav === '/contacts' ? 'h4 !text-logo_yellow ' : 'h4 '}`}>
                   Contact us
                 </div>
               </Link>
@@ -240,7 +334,7 @@ function Navbar({getmydata}) {
               <div>
 
               </div>
-              <div onClick={() => navigate('/register')} className="border border-[#0a8cbf] hover:bg-[#0a8cbf] cursor-pointer text-white h-10 flex items-center rounded-md justify-center px-10">
+              <div onClick={() => setAdver(true)} className="border border-[#0a8cbf] hover:bg-[#0a8cbf] cursor-pointer text-white h-10 flex items-center rounded-md justify-center px-10">
                 Register
               </div>
             </div>
@@ -248,9 +342,24 @@ function Navbar({getmydata}) {
         </div>
       </div>
 
-      <Outlet />
-
-      <div className='mt-10'>
+      <div className='min-h-screen relative  overflow-hidden  ' >
+        <div className='fixed bottom-10 z-50 right-5
+            bg-logo_white shadow-md shadow-logo_red rounded-full backdrop:blur-md ' >
+          <div className='relative' >
+            <CircularText
+              text="tournment*1-4-2024*"
+              onHover="speedUp"
+              spinDuration={20}
+              className="custom-class"
+            />
+            <div onClick={() => setAdver(true)} className='absolute top-0 left-0 h-full w-full flex justify-center items-center cursor-pointer' >
+              <SiRiotgames className='text-logo_green' size={25} />
+            </div>
+          </div>
+        </div>
+        <Outlet />
+      </div>
+      <div className='mt-10 '>
         <Footer />
       </div>
     </div>

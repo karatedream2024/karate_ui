@@ -4,6 +4,8 @@ import './Register.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAddRegistrationMutation } from '../../features/api/userapi';
+import { useNavigate } from 'react-router-dom';
+import { IoMdClose } from "react-icons/io";
 // import { useAddRegistrationMutation } from './apiSlice'; // Adjust the import path
 
 function Register() {
@@ -16,6 +18,8 @@ function Register() {
     academyName: '',
     beltRank: '',
   });
+
+  const navigate = useNavigate()
 
   const [addRegistration, { isLoading, isError, isSuccess }] = useAddRegistrationMutation();
 
@@ -33,19 +37,29 @@ function Register() {
         academyName: '',
         beltRank: '',
       });
+      setTimeout(() => {
+         navigate("/")
+      },2000)
     } catch (error) {
       toast.error('Registration failed. Please try again.');
     }
   };
 
   return (
-    <div className="custom-gradient min-h-screen pt-10">
-      <div className="p-8 max-w-4xl mx-auto bg-white rounded-lg shadow-lg bg-no-repeat bg-center" style={{ backgroundImage: `url(${logo})` }}>
-        <div className="text-center pb-6 backdrop:blur-3xl bg-white/60">
+    <div className="custom-gradient min-h-screen  backdrop-blur-2xl pt-10">
+      <div className=" max-w-4xl mx-auto bg-white/60 w-[90%] md:w-auto    backdrop-blur-2xl rounded-lg shadow-lg bg-no-repeat bg-center" 
+      style={{ backgroundImage: `url(${logo})` }}
+      >
+        <div className="bg-white/60  backdrop-blur-2xl py-10 rounded-lg  relative">
+        <div onClick={() => navigate("/")} className='absolute top-5 right-5 cursor-pointer' >
+        <IoMdClose  size={25} className='text-logo_blue' />
+        </div>
+        <div className='w-[90%] mx-auto' >
+        <div className='text-center' >
           <h2 className="h2 font-bold text-gray-800 mb-4 text-logo_red">Tournament Registration</h2>
           <p className="text-logo_blue">Please fill out the form below to register for the tournament.</p>
-        </div>
-        <form onSubmit={handleSubmit} className='bg-white/60'>
+          </div>
+        <form onSubmit={handleSubmit} className=''>
           <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
@@ -139,7 +153,7 @@ function Register() {
             <div className="text-center">
               <button
                 type="submit"
-                className="w-full bg-blue text-white font-semibold py-3 rounded-lg transition duration-300 hover:bg-blue-700"
+                className="mt-4 w-[300px] bg-blue text-white font-semibold py-3 rounded-lg transition duration-300 hover:bg-blue-700"
                 disabled={isLoading}
               >
                 {isLoading ? 'Registering...' : 'Register Now'}
@@ -147,6 +161,8 @@ function Register() {
             </div>
           </div>
         </form>
+        </div>
+        </div>
       </div>
       <ToastContainer />
     </div>
