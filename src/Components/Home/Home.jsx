@@ -1,16 +1,9 @@
 import React, { useEffect } from 'react';
 import MultiCarousel from './MultiCarousel';
-import master from '../../assets/master.png'
-import long5 from '../../assets/long5.jpg'
 import longmaster from '../../assets/longmaster.jpg'
-import longice from '../../assets/longice.jpg'
-import banner from '../../assets/banner.jpg'
 import meditate from '../../assets/meditate.jpg'
-import long25 from '../../assets/long25.jpg'
 import { useNavigate } from 'react-router-dom';
-import { useGetAllTournamentsQuery } from '../../features/api/userapi';
 import FallingText from './FallingText';
-import { IoGameControllerOutline } from "react-icons/io5";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
