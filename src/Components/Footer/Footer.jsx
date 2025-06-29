@@ -3,7 +3,7 @@ import logo from '../../assets/karatelogo.png'
 function Footer() {
   return (
     <div className='bg-[#005691]'>
-    <div className='bg-[#005691] w-[100%] lg:w-[1024px] mx-auto'>
+    <div className='bg-[#005691] w-[100%] lg:w-[1024px] mx-auto py-10'>
       <div className='grid sm:grid-cols-2'>
         <div className='flex flex-col items-center justify-center'> 
 
@@ -52,7 +52,7 @@ function Footer() {
         </div>
       </div>
       <div className='w-[100%] h-[100%] flex justify-center sm:items-center'>
-        <img className='h-28 sm:h-56' src={logo} alt="" />
+        <img className='h-28 sm:h-40' src={logo} alt="" />
       </div>
       </div>
     </div>

@@ -86,7 +86,12 @@ function Home() {
 
 const bestofus = [
   {
-    title: "Best of us",
+    title: "self-Dispiline",
+    desc: "Engage in rigorous combat training to enhance your fighting skills and physical endurance. Perfect for those seeking to challenge themselves and achieve peak performance.",
+    img:"https://media.istockphoto.com/id/1756190078/photo/portrait-of-a-boy-in-a-judo-class-at-the-gym.webp?b=1&s=612x612&w=0&k=20&c=CSJeYHU5YB6J3LHTNVd8us_Jipo_123C1AEVFohWHhE="
+  },
+  {
+    title: "Traning",
     desc: "Discover the discipline and focus of martial arts, where every movement is designed for precision and control. Embrace a journey of self-improvement and physical conditioning.",
     img:"https://media.istockphoto.com/id/1960871767/photo/young-karate-fighters-in-karate-school.webp?b=1&s=612x612&w=0&k=20&c=8E39oCq9POzAVdKDGNuUW5393zym4LmZtbRFt0zEc2Q="
   },
@@ -95,11 +100,7 @@ const bestofus = [
     desc: "Learn essential techniques and strategies to protect yourself in various situations. Our self-defense training emphasizes practical skills and confidence-building.",
     img:"https://media.istockphoto.com/id/1403476109/photo/martial-arts-fighters-training-together.webp?b=1&s=612x612&w=0&k=20&c=9_PGv3g-HylxgE1_Rgg8qdHYglWMblfB0fzom-zZs7I="
   },
-  {
-    title: "Best of us",
-    desc: "Engage in rigorous combat training to enhance your fighting skills and physical endurance. Perfect for those seeking to challenge themselves and achieve peak performance.",
-    img:"https://media.istockphoto.com/id/1756190078/photo/portrait-of-a-boy-in-a-judo-class-at-the-gym.webp?b=1&s=612x612&w=0&k=20&c=CSJeYHU5YB6J3LHTNVd8us_Jipo_123C1AEVFohWHhE="
-  }
+
 ]
 
 
@@ -387,7 +388,7 @@ const bestofus = [
               </div>
             </div>
             <div className='h-full flex justify-center items-center' >
-              <img data-aos="zoom-in-down"  className='flex  shadow-md shadow-logo_yellow rounded-lg' src="https://images.pexels.com/photos/7045758/pexels-photo-7045758.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
+              <img data-aos="zoom-in-down"  className='flex w-[95%]  shadow-md shadow-logo_yellow rounded-lg' src="https://images.pexels.com/photos/7045758/pexels-photo-7045758.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
             </div>
 
             <div data-aos="zoom-in" className='flex flex-col justify-center items-center w-[80%] mx-auto text-justify h5    text-white'>
